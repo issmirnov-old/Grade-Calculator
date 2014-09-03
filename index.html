@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Grade Calculator</title>
+		<!-- Basic Meta Data -->
+		<meta charset="UTF-8" />
+		<meta name="copyright" content="" />
+		
+		<!--css work-->
+		<meta name = "viewport" content = "initial-scale=1.0, width = 640">
+		<link rel='stylesheet' href='css/main.css' type='text/css'/>
+		<link rel="stylesheet" media="only screen and (max-device-width: 960px)" href="css/handheld.css" type="text/css">
+		
+		<!--javascript includes-->
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="js/calculateGrade.js"></script>
+		<script type="text/javascript" src="js/extrapolateGrade.js"></script>
+		
+		<!--scripts-->
+		<script language="javascript">
+		
+			function validate(evt) {
+				//alert("validator called for: " + evt);
+				var theEvent = evt || window.event;
+				var key = theEvent.keyCode || theEvent.which;
+				key = String.fromCharCode( key );
+				var regex = /[0-9]|\.|\//;   //var regex = /[0-9]|\./;
+				if( !regex.test(key) ) {
+					theEvent.returnValue = false;
+					if(theEvent.preventDefault) theEvent.preventDefault();
+				}
+				savePage();
+				//alert("save page was called from validator");
+			}//end validator function
+			
+			
+			
+			function addElement(){ /*Adds a blank text input in each column*/
+					//add category
+					$('#categories').append(
+						$('<li>').append(
+							$('<input>').attr({
+							type: 'text',
+							value: " ",
+							onkeyup: "javascript:savePage()",
+							})
+						)
+					);
+					
+					//add weight
+					$('#weight').append(
+						$('<li>').append(
+							$('<input>').attr({
+							type: 'text',
+							value: " ",
+							onkeyup: "javascript:validate(event)"
+							})	
+						)
+					);
+	
+					//add score
+					$('#myscore').append(
+						$('<li>').append(
+							$('<input>').attr({
+							type: 'text',
+							value: " ",
+							onkeyup: "javascript:validate(event)"
+							})	
+						)
+					);
+				savePage();
+			}//end addElement()
+			
+			function delElement(){
+				$('#weight li:last-child').remove();
+				$('#myscore li:last-child').remove();
+				$('#categories li:last-child').remove();	
+			}// end delElement
+			
+			function clearSave(){
+				//set ALL cookies, and have the expire date at -1
+				var exdays = -1;
+				setCookie("weightString",weightString,exdays);
+				setCookie("myscoreString",myscoreString,exdays);
+				setCookie("categoryString",categoryString,exdays);
+				setCookie("desiredGrade",$('#currentGrade').val(),exdays);
+			}//end clearSave			
+
+
+			//cookie work
+			function getCookie(c_name)
+			{
+				var i,x,y,ARRcookies=document.cookie.split(";");
+				for (i=0;i<ARRcookies.length;i++)
+				{
+					x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+					y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+					x=x.replace(/^\s+|\s+$/g,"");
+					if (x==c_name)
+					{
+						return unescape(y);
+					}
+				}
+			}// end getCookie()
+			
+			function setCookie(c_name,value,exdays)
+			{
+				var exdate=new Date();
+				exdate.setDate(exdate.getDate() + exdays);
+				var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+				document.cookie=c_name + "=" + c_value;
+			}// end setCookie()
+			
+			function savePage(){
+				//create all three arrays
+				$('#weight').data('weightArray', []);
+				$('#myscore').data('myscoreArray', []);
+				$('#categories').data('categoriesArray', []);
+				
+				//populate arrays
+					//loop and add category values to array
+					$("ul#categories > li > input").each(function(index) {
+						$('#categories').data('categoriesArray').push($(this).val());
+					});
+				
+					//loop and add weight values to array
+					$("ul#weight > li > input").each(function(index) {
+						$('#weight').data('weightArray').push($(this).val());
+					});
+			
+					//loop and add score values to array
+					$("ul#myscore > li > input").each(function(index) {
+						$('#myscore').data('myscoreArray').push($(this).val());
+					});
+					
+				//convert each array to string
+				var weightString = $('#weight').data('weightArray').join("~|`");
+				var myscoreString = $('#myscore').data('myscoreArray').join("~|`");
+				var categoryString = $('#categories').data('categoriesArray').join("~|`");
+				
+				//debug
+				//$(msg).append(weightString + "<br>" + myscoreString + "<br>" + categoryString );
+				//alert("save page called from savePage()");
+
+				var exdays = 365;
+				setCookie("weightString",weightString,exdays);
+				setCookie("myscoreString",myscoreString,exdays);
+				setCookie("categoryString",categoryString,exdays);
+				setCookie("desiredGrade",$('#currentGrade').val(),exdays);
+			}
+			
+			function loadPage(){
+				weightString = getCookie("weightString");
+				myscoreString = getCookie("myscoreString");
+				categoryString = getCookie("categoryString");
+				
+				if (weightString == undefined ) {
+    				return;
+				}
+				//set desired grade back
+				$('#currentGrade').attr('value', getCookie("desiredGrade"));
+				
+				//create all three arrays
+				$('#weight').data('weightArray', weightString.split("~|`"));
+				$('#myscore').data('myscoreArray', myscoreString.split("~|`"));
+				$('#categories').data('categoriesArray', categoryString.split("~|`"));
+				
+				//clear columns, add headers
+				$('#categories').empty();
+				$('#weight').empty();
+				$('#myscore').empty();
+
+				$('#categories').append('<div class="header" id="categoriesHeader">Categories</div>');
+				$('#weight').append('<div class="header" id="weightHeader">Weight (%)</div>');
+				$('#myscore').append('<div class="header" id="myScoreHeader">My Score (decimals)</div>');
+			
+				//print arrays back to page
+				for (i = 0; i < $('#weight').data('weightArray').length; i++){
+					//add category
+					$('#categories').append(
+						$('<li>').append(
+							$('<input>').attr({
+							type: 'text',
+							value: $('#categories').data('categoriesArray')[i]
+							})
+						)
+					);
+					
+					//add weight
+					$('#weight').append(
+						$('<li>').append(
+							$('<input>').attr({
+							type: 'text',
+							value: $('#weight').data('weightArray')[i],
+							onkeyup: "javascript:validate(event)"
+							})	
+						)
+					);
+	
+					//add score
+					$('#myscore').append(
+						$('<li>').append(
+							$('<input>').attr({
+							type: 'text',
+							value: $('#myscore').data('myscoreArray')[i],
+							onkeyup: "javascript:validate(event)"
+							})	
+						)
+					);
+				}///end for
+			}//end loadPage
+			
+			
+		</script>
+
+
+	</head>
+
+	
+	<body onload="loadPage()">
+		
+		<div id="pagecontainer">
+			<div id="header">
+				<div><!--id="wrapper"-->
+					<div id="title"><h1>Grade Calculator</h1></div>
+					<div id="subtext"><p>Developed by Vania Smirnov</p></div>
+				</div>
+			</div>
+			
+			<!--trying to get save into top right corner-->
+			<a id="clearSave" class="button" href="javascript:clearSave()"><span>Clear Saved Data</span></a>
+			
+			<ul id="categories">
+				<div class="header" id="categoriesHeader">Categories</div>
+				<li><input type="text" onkeyup="javascript:savePage()" value="Homework"/></li>
+				<li><input type="text" onkeyup="javascript:savePage()" value="Attendance"/></li>
+				<li><input type="text" onkeyup="javascript:savePage()" value="Quizzes"/></li>
+				<li><input type="text" onkeyup="javascript:savePage()" value="Midterms"/></li>
+				<li><input type="text" onkeyup="javascript:savePage()" value="Final"/></li>
+			</ul>
+			
+			<ul id="weight">
+				<div class="header" id="weightHeader">Weight (%)</div>
+				<li><input type="text" onkeyup="javascript:validate(event)" value="20"/></li>
+				<li><input type="text" onkeyup="javascript:validate(event)" value="30"/></li>
+				<li><input type="text" onkeyup="javascript:validate(event)" value="50"/></li>
+				<li><input type="text" onkeyup="javascript:validate(event)" value=""/></li>
+				<li><input type="text" onkeyup="javascript:validate(event)" value=""/></li>
+			</ul>
+			
+			
+			<ul id="myscore">
+				<div class="header" id="myScoreHeader">My Score (decimals)</div>
+				<li><input type="text" onkeyup="javascript:validate(event)" value=".9"/></li>
+				<li><input type="text" onkeyup="javascript:validate(event)" value="1"/></li>
+				<li><input type="text" onkeyup="javascript:validate(event)" value=""/></li>
+				<li><input type="text" onkeyup="javascript:validate(event)" value=""/></li>
+				<li><input type="text" onkeyup="javascript:validate(event)" value=""/></li>
+			</ul>
+				
+
+			<div id="3buttons">
+				<div id="catBut">
+					<a id="addCategory" class="button" href="javascript:addElement()"><span>Add</span></a>
+					<a id="deleteCategory" class="button" href="javascript:delElement()"><span>Remove</span></a>
+				</div>
+	
+	
+				<div id="grade" class="clear">		
+					<a class="button" href="javascript:calculateGrade()"><span>Calculate</span></a>
+					<input id="currentGrade" onkeyup="javascript:validate(event)" type="text" value="90"/>
+					<a class="button" href="javascript:extrapolateGrade()"><span>Estimate</span></a>	
+				</div><!--end div grade-->
+				
+				<!--<div id="saveload">
+					<a class="button" href="javascript:savePage()"><span>Save</span></a>
+					<a class="button" href="javascript:loadPage()"><span>Load</span></a>
+				</div>-->
+			</div><!--end 3buttons div-->
+			
+			
+			<div id="msg">
+			</div><!--end msg div-->
+		
+	
+			<div id="instructions">
+				<h2>Calculating your grade:</h2>
+				<p>Enter all of the weights and category names, and your current scores. Then click calculate.</p>
+						
+				<h2>What grade do I need to get a "x"?</h2>
+				<p>Enter your desired grade into box, then enter all the weights and scores that you have, and the leave the one you are curious about blank. Then click "Estimate".</p>
+				
+				<h2>I'm getting weird results!</h2>
+				<p>Make sure all the values are in a good format. Weights should be in whole numbers, ie, 20% should be a 20 or 20.0. My Score should be either a fraction or a decimal, ie, 47/50 or 0.96</p>
+			</div><!----><!--end instructions-->
+		</div><!--end container-->
+	</body>
+</html>
