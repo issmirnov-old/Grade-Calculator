@@ -1,0 +1,4 @@
+Refactoring
+- make all data arrays legit js objects rather than binding to a div
+- factor out a function that will iterate over page values and return a json dictionary with all three arrays (or two, for weight and score)
+- clean up all indentation in CSS, make better names for
