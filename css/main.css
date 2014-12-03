@@ -1,5 +1,5 @@
 /*reset css*/
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -13,8 +13,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -25,7 +25,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -58,7 +58,7 @@ height: 100%;
 margin: 0;
 background-repeat: no-repeat;
 background-attachment: fixed;
-/*background:#eeeeee;fallback for older browsers*/	
+/*background:#eeeeee;fallback for older browsers*/
 
 
 /*gradient code*//* blue to white*/
@@ -91,75 +91,78 @@ border-radius: 15px;
 }
 
 #header{
-text-align:center;
-width:100%;
-margin-bottom:10px;
+	text-align:center;
+	width:100%;
+	margin-bottom:10px;
+}
 
-}
 #title{
-font-size:24px;
-font-weight:700;
-text-shadow: 1px 2px 3px #999; /*x-offset,y-offset, blur, color*/
+	font-size:24px;
+	font-weight:700;
+	text-shadow: 1px 2px 3px #999; /*x-offset,y-offset, blur, color*/
 }
+
 #subtext{
-font-size:10px;
-margin-top:2px;
+	font-size:10px;
+	margin-top:2px;
 }
 
 #saveload{
-float:right;
-width:30%;
+	float:right;
+	width:30%;
 }
+
+#classSelector {
+
+}
+
 
 
 /*for column headers - for title header, go to div*/
 .header {
-font-weight: bold;
-margin-bottom:5px;
+	font-weight: bold;
+	margin-bottom:5px;
 }
 
 /*column styles*/
 #categories{
-position:relative;
-float:left;
-margin: 0 auto;
+	position:relative;
+	float:left;
+	margin: 0 auto;
 
-z-index: 100;
-width: 34%;
-overflow: hidden;
+	z-index: 100;
+	width: 34%;
+	overflow: hidden;
 }
 #weight{
-position:relative;
-text-align:center;
-width: 33%;
-float:left;
-text-align:right;
-
+	position:relative;
+	text-align:center;
+	width: 33%;
+	float:left;
+	text-align:right;
 }
 #myscore{
-position:relative;
-float:left;
-text-align:right;
-z-index:99;
-width: 33%;
-
+	position:relative;
+	float:left;
+	text-align:right;
+	z-index:99;
+	width: 33%;
 }
 
 
 
 /*instructions styles*/
 #instructions {
-padding-top:20px;
-clear:both;
-line-height:1.5;
-
+	padding-top:20px;
+	clear:both;
+	line-height:1.5;
 }
 h2{
-font-weight: 700;
-font-size:16px;
+	font-weight: 700;
+	font-size:16px;
 }
 p{
-margin-bottom:5px;
+	margin-bottom:5px;
 }
 
 
@@ -167,21 +170,22 @@ margin-bottom:5px;
 #3buttons{
 }
 #grade {
-float:right;
-width:60%;
-margin-right:15px;
-margin-top:10px;
-margin-bottom:10px;
+	float:right;
+	width:60%;
+	margin-right:15px;
+	margin-top:10px;
+	margin-bottom:10px;
 }
 
 #addCategory{
+
 }
 
 #clearSave{
-position: absolute;
-left: 490px;
-top: 30px;
-z-index:3;
+	position: absolute;
+	left: 490px;
+	top: 30px;
+	z-index:3;
 }
 #catBut{
 float:left;
@@ -191,11 +195,11 @@ margin-bottom:10px;
 
 }
 #currentGrade{
-margin-left:20px;
-border-style: solid;
-border-width: 1px;
-width:45px;
-text-align:right;
+	margin-left:20px;
+	border-style: solid;
+	border-width: 1px;
+	width:45px;
+	text-align:right;
 }
 
 #msg{
@@ -277,46 +281,3 @@ text-shadow: 0 1px 0 #ccc,
  0 10px 10px rgba(0,0,0,.2),
  0 20px 20px rgba(0,0,0,.15);
 }
-
-/*origianl code for glossy header
-
-#wrapper h1{
- font:normal 60pt Arial;
- color:#FFFFFF;
- text-shadow: 0 1px 0 #ccc,
- 0 2px 0 #c9c9c9,
- 0 3px 0 #bbb,
- 0 4px 0 #b9b9b9,
- 0 5px 0 #aaa,
- 0 6px 1px rgba(0,0,0,.1),
- 0 0 5px rgba(0,0,0,.1),
- 0 1px 3px rgba(0,0,0,.3),
- 0 3px 5px rgba(0,0,0,.2),
- 0 5px 10px rgba(0,0,0,.25),
- 0 10px 10px rgba(0,0,0,.2),
- 0 20px 20px rgba(0,0,0,.15);
-}
-
-#wrapper p{
- font:normal 40pt Arial;
- color:#FFFFFF;
- text-shadow: 0 1px 0 #ccc,
- 0 2px 0 #c9c9c9,
- 0 3px 0 #bbb,
- 0 4px 0 #b9b9b9,
- 0 5px 0 #aaa,
- 0 6px 1px rgba(0,0,0,.1),
- 0 0 5px rgba(0,0,0,.1),
- 0 1px 3px rgba(0,0,0,.3),
- 0 3px 5px rgba(0,0,0,.2),
- 0 5px 10px rgba(0,0,0,.25),
- 0 10px 10px rgba(0,0,0,.2),
- 0 20px 20px rgba(0,0,0,.15);
-}
-
-*/
-
-
-
-
-
