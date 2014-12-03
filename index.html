@@ -238,16 +238,6 @@
 
 		<div id="pagecontainer">
 
-<!--
-			<select id="classSelector">
-				<option value="class1">Class 1</option>
-				<option value="class2">Class 2</option>
-				<option value="class3">Class 3</option>
-				<option value="class4">Class 4</option>
-			</select>
-		-->
-
-
 			<div id="header">
 				<div><!--id="wrapper"-->
 					<div id="title"><h1>Grade Calculator</h1></div>
@@ -291,7 +281,7 @@
 
 
 			<div id="3buttons">
-				<div id="catBut">
+				<div id="catBut" class="clear">
 					<a id="addCategory" class="button" href="javascript:addElement()"><span>Add</span></a>
 					<a id="deleteCategory" class="button" href="javascript:delElement()"><span>Remove</span></a>
 				</div>
@@ -299,9 +289,25 @@
 
 				<div id="grade" class="clear">
 					<a class="button" href="javascript:calculateGrade()"><span>Calculate</span></a>
-					<input id="currentGrade" onkeyup="javascript:validate(event)" type="text" value="90"/>
+
 					<a class="button" href="javascript:extrapolateGrade()"><span>Estimate</span></a>
 				</div><!--end div grade-->
+
+
+		<div id="col3" class="clear">
+
+			<input id="currentGrade" onkeyup="javascript:validate(event)" type="text" value="90"/>
+
+				<!---->
+		<select id="classSelector">
+			<option value="class1">Class 1</option>
+			<option value="class2">Class 2</option>
+			<option value="class3">Class 3</option>
+			<option value="class4">Class 4</option>
+		</select>
+
+	</div><!-- /col3-->
+
 
 			</div><!--end 3buttons div-->
 

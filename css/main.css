@@ -112,9 +112,7 @@ border-radius: 15px;
 	width:30%;
 }
 
-#classSelector {
 
-}
 
 
 
@@ -170,11 +168,31 @@ p{
 #3buttons{
 }
 #grade {
-	float:right;
-	width:60%;
-	margin-right:15px;
-	margin-top:10px;
-	margin-bottom:10px;
+	float: left;
+	width: 35%;
+	margin-left: 50px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#col3 {
+	float: left;
+	width: 25%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#currentGrade{
+	border-style: solid;
+	border-width: 1px;
+	width:45px;
+	text-align:right;
+}
+
+#classSelector {
+	margin-right: 10px;
+	width: 70px;
+	float: right;
 }
 
 #addCategory{
@@ -188,28 +206,21 @@ p{
 	z-index:3;
 }
 #catBut{
-float:left;
-/*width:25%;*/
-margin-top:10px;
-margin-bottom:10px;
+	float: left;
+	width:30%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 
-}
-#currentGrade{
-	margin-left:20px;
-	border-style: solid;
-	border-width: 1px;
-	width:45px;
-	text-align:right;
-}
 
 #msg{
-background:#eeeee;
-height:16px;
-margin:10px;
-padding:4px;
-clear:both;
-text-align:left;
-display: none;
+	background:#eeeee;
+	height:16px;
+	margin:10px;
+	padding:4px;
+	clear:both;
+	text-align:left;
+	display: none;
 }
 
 /*remove spin buttons*/
