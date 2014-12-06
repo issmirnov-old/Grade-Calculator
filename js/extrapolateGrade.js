@@ -1,10 +1,7 @@
 		function extrapolateGrade(){ /*Extrapolates grades*/
 			savePage();
 
-			//initialize arrays and variables
-			$('#weight').data('weightArray', []);
-			$('#myscore').data('myscoreArray', []);
-			$('#categories').data('categoriesArray', []);
+			
 			var result = 0;
 			var desiredGrade = eval($('#currentGrade').val());
 
@@ -19,6 +16,11 @@
 				return
 			}
 
+            //initialize arrays and variables
+			$('#weight').data('weightArray', []);
+			$('#myscore').data('myscoreArray', []);
+			$('#categories').data('categoriesArray', []);
+			
 			//loop and add weight values to array
 			$("ul#weight > li > input").each(function(index) {
 				$('#weight').data('weightArray').push($(this).val());
@@ -29,14 +31,14 @@
 				$('#myscore').data('myscoreArray').push($(this).val());
 			});
 
+
+
 			// multiply together, store in new array
 			for (i = 0; i < $('#weight').data('weightArray').length; i++){
 
 				//catch fractions
 				if (eval($('#myscore').data('myscoreArray')[i]) != undefined){
 					$('#myscore').data('myscoreArray')[i] = eval($('#myscore').data('myscoreArray')[i]);
-					//debug
-					//console.log( $('#myscore').data('myscoreArray')[i] );
 				}
 
 				// clean arrays
@@ -53,7 +55,6 @@
 			for (i = 0; i < $('#weight').data('weightArray').length; i++){
 				result += $('#categories').data('categoriesArray')[i]
 			}
-
 
 			// calculate weightSum
 			var weightSum = 0;
@@ -116,4 +117,5 @@
 			desiredGrade = parseFloat(desiredGrade.toFixed(4))
 			//print results
 			$('#currentGrade').attr('value', desiredGrade);
+			savePage();
 		}//end extrapolateGrade()

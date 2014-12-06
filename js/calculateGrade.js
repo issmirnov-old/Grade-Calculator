@@ -5,6 +5,7 @@
 
 			// TODO - use proper arrays instead of HTML DOM binds
 
+            
 			//initialize arrays and variables
 			$('#weight').data('weightArray', []);
 			$('#myscore').data('myscoreArray', []);
@@ -20,6 +21,10 @@
 			$("ul#myscore > li > input").each(function(index) {
 				$('#myscore').data('myscoreArray').push($(this).val());
 			});
+			
+			
+			
+
 
 			// multiply together, store in new array
 			for (i = 0; i < $('#weight').data('weightArray').length; i++){
@@ -28,6 +33,8 @@
 				if (eval($('#myscore').data('myscoreArray')[i]) != undefined){
 					$('#myscore').data('myscoreArray')[i] = eval($('#myscore').data('myscoreArray')[i]);
 				}
+				
+				// clean arrays?
 
 
 				// multiply
@@ -35,6 +42,12 @@
 					$('#weight').data('weightArray')[i] * $('#myscore').data('myscoreArray')[i]
 				);
 			}
+			
+			
+			
+			
+			
+			
 
 			// summarize values
 			for (i = 0; i < $('#weight').data('weightArray').length; i++){

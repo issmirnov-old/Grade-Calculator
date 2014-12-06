@@ -117,7 +117,15 @@ function updateClasses() {
         var classNum = $("#classSelector").val();
 
         // make a json
-        var page = {};
+        var pageString = getCookie("pageJSON");
+        
+
+        if (pageString == undefined ) {
+            var page = {};
+        } else {
+            var page = JSON.parse(pageString);
+        }
+        
         page[classNum] = {};
         page[classNum]["weight"] = [];
         page[classNum]["score"] = [];
@@ -151,9 +159,13 @@ function updateClasses() {
         console.log(pageString);
 
         var exdays = 365;
-    setCookie("pageJSON", pageString, exdays);
-setCookie("desiredGrade",$('#currentGrade').val(), exdays);
+        setCookie("pageJSON", pageString, exdays);
+        setCookie("desiredGrade",$('#currentGrade').val(), exdays);
     }
+    
+    
+    
+    
 
     function loadPage(){
 
@@ -170,6 +182,13 @@ setCookie("desiredGrade",$('#currentGrade').val(), exdays);
 
         // extract page data
         var page = JSON.parse(pageString);
+        
+        // check if no saved data
+        if (page[classNum] == undefined) {
+            // load defaults
+            loadDefaults();
+            return;
+        }
 
         //clear columns, add headers
         $('#categories').empty();
@@ -214,3 +233,62 @@ setCookie("desiredGrade",$('#currentGrade').val(), exdays);
             );
         }///end for
     }//end loadPage
+
+
+
+    function loadDefaults() {
+         //clear columns, add headers
+        $('#categories').empty();
+        $('#weight').empty();
+        $('#myscore').empty();
+        $('#categories').append('<div class="header" id="categoriesHeader">Categories</div>');
+        $('#weight').append('<div class="header" id="weightHeader">Weight (%)</div>');
+        $('#myscore').append('<div class="header" id="myScoreHeader">My Score (decimals)</div>');
+        
+        var categoryConstants = ["Homework", "Attendance", "Quizzes", "Midterms", "Final"];
+        var weightConstants = [20, 30, 50, "", "" ];
+        var scoreConstants = [.9, 1, "", "", "" ];
+        
+        
+        for (i = 0; i < categoryConstants.length; i++){
+            //add category
+            $('#categories').append(
+                $('<li>').append(
+                    $('<input>').attr({
+                    type: 'text',
+                    value: categoryConstants[i]
+                    })
+                )
+            );
+
+            //add weight
+            $('#weight').append(
+                $('<li>').append(
+                    $('<input>').attr({
+                    type: 'text',
+                    value: weightConstants[i],
+                    onkeyup: "javascript:validate(event)"
+                    })
+                )
+            );
+
+            //add score
+            $('#myscore').append(
+                $('<li>').append(
+                    $('<input>').attr({
+                    type: 'text',
+                    value: scoreConstants[i],
+                    onkeyup: "javascript:validate(event)"
+                    })
+                )
+            );
+        }///end for
+        
+        $('#currentGrade').attr('value', 90);
+        
+    }
+    
+    
+    function renameClass() {
+        alert("rename");
+    }

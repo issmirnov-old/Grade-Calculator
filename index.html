@@ -12,6 +12,7 @@
 		<meta name = "viewport" content = "initial-scale=1.0, width = 640">
 		<link rel='stylesheet' href='css/main.css' type='text/css'/>
 		<link rel="stylesheet" media="only screen and (max-device-width: 960px)" href="css/handheld.css" type="text/css">
+		<link rel="stylesheet" href="css/fontello.css">
 
 		<!--scripts-->
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
@@ -27,7 +28,7 @@
 		<div id="pagecontainer">
 
 			<div id="header">
-				<div><!--id="wrapper"-->
+				<div>
 					<div id="title"><h1>Grade Calculator</h1></div>
 					<div id="subtext"><p>Developed by Ivan Smirnov</p></div>
 				</div>
@@ -82,41 +83,48 @@
 				</div><!--end div grade-->
 
 
-		<div id="col3" class="clear">
+                <div id="col3" class="clear">
+    			   
+    
+                    <div id="rename">
+            		    <i onclick="javascript:renameClass(): class="pencilpg-fontello-icon-"></i>
+            		</div>
+            		
 
-			<input id="currentGrade" onkeyup="javascript:validate(event)" type="text" value="90"/>
-
-				<!---->
-		<select id="classSelector">
-			<option value="class1">Class 1</option>
-			<option value="class2">Class 2</option>
-			<option value="class3">Class 3</option>
-			<option value="class4">Class 4</option>
-		</select>
-
-	</div><!-- /col3-->
-
-
-			</div><!--end 3buttons div-->
+            		<select id="classSelector">
+            			<option value="class1">Class 1</option>
+            			<option value="class2">Class 2</option>
+            			<option value="class3">Class 3</option>
+            			<option value="class4">Class 4</option>
+            		</select>
+            		
+                    <input id="currentGrade" onkeyup="javascript:validate(event)" type="text" value="90"/>
+            		
+            		
+    
+                </div><!-- /col3-->
 
 
-			<div id="msg">
-			</div><!--end msg div-->
+            </div><!--end 3buttons div-->
 
 
-			<div id="instructions">
-				<h2>Calculating your grade:</h2>
-				<p>Enter all of the weights and category names, and your current scores. Then click calculate.</p>
+            <div id="msg">
+    		</div><!--end msg div-->
 
-				<h2>What grade do I need to get a "x"?</h2>
-				<p>Enter your desired grade into box, then enter all the weights and scores that you have, and the leave the one you are curious about blank. Then click "Estimate".</p>
 
-				<h2>I'm getting weird results!</h2>
-				<p>Make sure all the values are in a good format. Weights should be in whole numbers, ie, 20% should be a 20 or 20.0. My Score should be either a fraction or a decimal, ie, 47/50 or 0.96</p>
-
-				<h2>I like your work! Who are you?</h2>
-				<p>Glad you like it! I'm a third year studying computer science at UC Berkeley. You can find out more about me on my <a href="http://ivansmirnov.name">personal site</a>, see some projects on my <a href="http://github.com/issmirnov">GitHub</a>, or connect with me on <a href="https://linkedin.com/in/ismirnov">LinkedIn</a></p>
-			</div><!----><!--end instructions-->
-		</div><!--end container-->
+    		<div id="instructions">
+    			<h2>Calculating your grade:</h2>
+    			<p>Enter all of the weights and category names, and your current scores. Then click calculate.</p>
+    
+    			<h2>What grade do I need to get a "x"?</h2>
+    			<p>Enter your desired grade into box, then enter all the weights and scores that you have, and the leave the one you are curious about blank. Then click "Estimate".</p>
+    
+    			<h2>I'm getting weird results!</h2>
+    			<p>Make sure all the values are in a good format. Weights should be in whole numbers, ie, 20% should be a 20 or 20.0. My Score should be either a fraction or a decimal, ie, 47/50 or 0.96</p>
+    
+    			<h2>I like your work! Who are you?</h2>
+    			<p>Glad you like it! I'm a third year studying computer science at UC Berkeley. You can find out more about me on my <a href="http://ivansmirnov.name">personal site</a>, see some projects on my <a href="http://github.com/issmirnov">GitHub</a>, or connect with me on <a href="https://linkedin.com/in/ismirnov">LinkedIn</a></p>
+    		</div><!----><!--end instructions-->
+        </div><!--end container-->
 	</body>
 </html>
