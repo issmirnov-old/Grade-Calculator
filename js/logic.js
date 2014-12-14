@@ -11,8 +11,9 @@ $( document ).ready(function() {
 });
 
 function updateClasses() {
+    // savePage();
     var className = $("#classSelector").val();
-    console.log(className);
+    //console.log(className);
     loadPage(); // will this cheat work?
 
     // extract json data if it exists, and populate the values in the divs
@@ -151,7 +152,10 @@ function updateClasses() {
             });
 
 
-
+        // save user defined name
+        page[classNum]["name"] = $("#classSelector option:selected").text();
+        console.log("set saved name to " + page[classNum]["name"]);
+        
 
         // alert("save page called from savePage()");
         // make json string
@@ -179,6 +183,8 @@ function updateClasses() {
         }
         //set desired grade back
         $('#currentGrade').attr('value', getCookie("desiredGrade"));
+        
+        
 
         // extract page data
         var page = JSON.parse(pageString);
@@ -189,6 +195,20 @@ function updateClasses() {
             loadDefaults();
             return;
         }
+        
+        
+        // set class names back
+        
+        // 1. iterate over cookie, see what dicts are set
+        // 2. if cookei DNE, set defailt name
+        // 3. else, load name from cookie and set it.
+        
+        $("#classSelector option:selected").text(page[classNum]["name"]);
+        console.log("loaded saved name to " + page[classNum]["name"]);
+        
+        
+        
+        
 
         //clear columns, add headers
         $('#categories').empty();
@@ -290,5 +310,19 @@ function updateClasses() {
     
     
     function renameClass() {
-        alert("rename");
+        var classIndex = $("#classSelector").val();
+        var className =  $("#classSelector option:selected").text();
+        
+        var newName = prompt("Rename this class", className);
+        if (newName != null) {
+            $("#classSelector option:selected").text(newName);
+        }
+        
+        savePage();
+        
+        // cookie is okay, but now also need to load and save the user defined names.
+        
+        
+    
+            
     }
