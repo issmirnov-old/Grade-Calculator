@@ -1,8 +1,9 @@
-# Grade Calculator [v2.1]
+# Grade Calculator [v3.1]
 ***
 
-
 `Grade Calculator` is a web based calculator that allows students to calculate potential course grades.
+
+Live site: http://ivansmirnov.name/projects/grade-calculator/
 
 ### Screenshot
 
@@ -11,7 +12,7 @@
     
 ### Usage
     
-Extract this folder to a web host. For cookies to work, this needs to be hosted somewhere, rather than a locally opened html file.
+Extract this folder to any web server. If you try to open the index.html page locally there will be no support for multiple classes or naming. 
     
 ### FAQ
     

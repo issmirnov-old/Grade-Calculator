@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html>
-
 	<head>
 		<title>Grade Calculator</title>
 		<!-- Basic Meta Data -->
@@ -19,27 +17,16 @@
 		<script type="text/javascript" src="js/calculateGrade.js"></script>
 		<script type="text/javascript" src="js/extrapolateGrade.js"></script>
 		<script type="text/javascript" src="js/logic.js"></script>
-
 	</head>
-
-
 	<body onload="loadPage()">
-
 		<div id="pagecontainer">
-
 			<div id="header">
 				<div>
 					<div id="title"><h1>Grade Calculator</h1></div>
 					<div id="subtext"><p>Developed by Ivan Smirnov</p></div>
 				</div>
 			</div>
-
 			<a id="clearSave" class="button" href="javascript:clearSave()"><span>Clear Saved Data</span></a>
-
-
-
-
-
 			<ul id="categories">
 				<div class="header" id="categoriesHeader">Categories</div>
 				<li><input type="text" onkeyup="javascript:savePage()" value="Homework"/></li>
@@ -48,7 +35,6 @@
 				<li><input type="text" onkeyup="javascript:savePage()" value="Midterms"/></li>
 				<li><input type="text" onkeyup="javascript:savePage()" value="Final"/></li>
 			</ul>
-
 			<ul id="weight">
 				<div class="header" id="weightHeader">Weight (%)</div>
 				<li><input type="text" onkeyup="javascript:validate(event)" value="20"/></li>
@@ -57,8 +43,6 @@
 				<li><input type="text" onkeyup="javascript:validate(event)" value=""/></li>
 				<li><input type="text" onkeyup="javascript:validate(event)" value=""/></li>
 			</ul>
-
-
 			<ul id="myscore">
 				<div class="header" id="myScoreHeader">My Score (decimals)</div>
 				<li><input type="text" onkeyup="javascript:validate(event)" value=".9"/></li>
@@ -68,29 +52,20 @@
 				<li><input type="text" onkeyup="javascript:validate(event)" value=""/></li>
 			</ul>
 
-
 			<div id="3buttons">
 				<div id="catBut" class="clear">
 					<a id="addCategory" class="button" href="javascript:addElement()"><span>Add</span></a>
 					<a id="deleteCategory" class="button" href="javascript:delElement()"><span>Remove</span></a>
 				</div>
-
-
 				<div id="grade" class="clear">
 					<a class="button" href="javascript:calculateGrade()"><span>Calculate</span></a>
 
 					<a class="button" href="javascript:extrapolateGrade()"><span>Estimate</span></a>
 				</div><!--end div grade-->
-
-
                 <div id="col3" class="clear">
-    			   
-    
                     <div id="rename">
             		    <i onclick="javascript:renameClass()" class="pencilpg-fontello-icon-"></i>
             		</div>
-            		
-
             		<select id="classSelector">
             			<option value="class1">Class 1</option>
             			<option value="class2">Class 2</option>
@@ -98,21 +73,11 @@
             			<option value="class4">Class 4</option>
             			<option value="class5">Class 5</option>
             		</select>
-            		
                     <input id="currentGrade" onkeyup="javascript:validate(event)" type="text" value="90"/>
-            		
-            		
-    
                 </div><!-- /col3-->
-
-
             </div><!--end 3buttons div-->
-
-
             <div id="msg">
     		</div><!--end msg div-->
-
-
     		<div id="instructions">
     			<h2>Calculating your grade:</h2>
     			<p>Enter all of the weights and category names, and your current scores. Then click calculate.</p>
