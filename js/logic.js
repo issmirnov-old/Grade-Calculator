@@ -198,8 +198,17 @@ function updateClasses() {
         
         
         // set class names back
-        
         // 1. iterate over cookie, see what dicts are set
+        for (var key in page) {
+             var savedName = page[key]["name"];
+             // inefficient way to loop through and set the names
+             $('#classSelector option').each(function() {
+                if ($(this).val() === key) {
+                    $(this).text(savedName)
+                }
+              }); 
+        } 
+        
         // 2. if cookei DNE, set defailt name
         // 3. else, load name from cookie and set it.
         

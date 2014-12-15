@@ -62,7 +62,7 @@
 
 			//create result, normalize to 100 scale
 			result = result * 100 / weightSum;
-			result = result.toFixed(3);
+			result = result.toFixed(2);
 
 			//print results
 			$('#currentGrade').attr('value', result);
