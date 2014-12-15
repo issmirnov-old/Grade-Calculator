@@ -2,3 +2,4 @@ Refactoring
 
 - make bottom buttons into relative floats rather than absolute pixel margins.
 - refactor calculate and extrapolate.js to use in memory arrays rather than binding data to a div. also, extract common function that reads in data from page inputs
+- Add state - store empty indices on "estimate", allow users to estimate repeatedly w/o erasing box manually.
