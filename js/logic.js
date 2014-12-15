@@ -131,40 +131,34 @@ function updateClasses() {
         page[classNum]["weight"] = [];
         page[classNum]["score"] = [];
         page[classNum]["categories"] = [];
+        page[classNum]["desiredGrade"] = $('#currentGrade').val();
 
         //populate arrays
             //loop and add category values to array
             $("ul#categories > li > input").each(function(index) {
-
                 page[classNum]["categories"].push($(this).val());
             });
 
             //loop and add weight values to array
             $("ul#weight > li > input").each(function(index) {
-
                 page[classNum]["weight"].push($(this).val());
             });
 
             //loop and add score values to array
             $("ul#myscore > li > input").each(function(index) {
-
                 page[classNum]["score"].push($(this).val());
             });
 
 
         // save user defined name
         page[classNum]["name"] = $("#classSelector option:selected").text();
-        console.log("set saved name to " + page[classNum]["name"]);
-        
 
-        // alert("save page called from savePage()");
         // make json string
         var pageString = JSON.stringify(page);
         console.log(pageString);
 
         var exdays = 365;
         setCookie("pageJSON", pageString, exdays);
-        setCookie("desiredGrade",$('#currentGrade').val(), exdays);
     }
     
     
@@ -176,19 +170,13 @@ function updateClasses() {
         // determine which class we are in
         var classNum = $("#classSelector").val();
 
+        // get page info
         var pageString = getCookie("pageJSON");
-
         if (pageString == undefined ) {
             return;
         }
-        //set desired grade back
-        $('#currentGrade').attr('value', getCookie("desiredGrade"));
-        
-        
-
         // extract page data
         var page = JSON.parse(pageString);
-        
         // check if no saved data
         if (page[classNum] == undefined) {
             // load defaults
@@ -196,6 +184,8 @@ function updateClasses() {
             return;
         }
         
+        //set desired grade back
+        $('#currentGrade').attr('value', page[classNum]["desiredGrade"]);  
         
         // set class names back
         // 1. iterate over cookie, see what dicts are set
@@ -209,17 +199,11 @@ function updateClasses() {
               }); 
         } 
         
-        // 2. if cookei DNE, set defailt name
-        // 3. else, load name from cookie and set it.
-        
+        // set user defined name back
         $("#classSelector option:selected").text(page[classNum]["name"]);
-        console.log("loaded saved name to " + page[classNum]["name"]);
-        
-        
-        
-        
 
-        //clear columns, add headers
+
+        // clear columns, add back headers
         $('#categories').empty();
         $('#weight').empty();
         $('#myscore').empty();
